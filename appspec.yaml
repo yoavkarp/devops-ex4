@@ -1,12 +1,8 @@
 version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html
-hooks:
-  StopDocker:
-    - location: scripts/stop.sh
-      timeout: 300
-  RunDocker:
-    - location: scripts/run.sh
-      timeout: 300
+Resources:
+  - TargetService:
+      Type: AWS::EC2::Instance
+      Properties:
+        LoadBalancerInfo:
+          ContainerName: nginx
+          ContainerPort: 80

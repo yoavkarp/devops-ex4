@@ -3,15 +3,12 @@ os: linux
 files:
   - source: /
     destination: /var/www/html
-permissions:
-  - object: /var/www/html
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
 hooks:
   AfterInstall:
-    - location: deploy.sh
+    - location: scripts/after_install.sh
       timeout: 300
+      runas: ubuntu
   BeforeInstall:
-    - location: before_install.sh
+    - location: scripts/before_install.sh
       timeout: 300
+      runas: ubuntu

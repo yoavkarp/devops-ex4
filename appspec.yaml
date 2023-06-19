@@ -12,3 +12,6 @@ hooks:
   AfterInstall:
     - location: deploy.sh
       timeout: 300
+  BeforeInstall:
+    - location: before_install.sh
+      timeout: 300

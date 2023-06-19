@@ -1,8 +1,14 @@
 version: 0.0
-Resources:
-  - TargetService:
-      Type: AWS::EC2::Instance
-      Properties:
-        LoadBalancerInfo:
-          ContainerName: nginx
-          ContainerPort: 80
+os: linux
+files:
+  - source: /
+    destination: /var/www/html
+permissions:
+  - object: /var/www/html
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+hooks:
+  AfterInstall:
+    - location: scripts/deploy.sh
+      timeout: 300
